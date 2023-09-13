@@ -209,7 +209,7 @@ const initialize = (botToken: string, options: Partial<Telegraf.Options<MainCont
       const [val] = await validateParams(ctx, 2, '\\<_on/off_\\>');
       if (!val) return;
       let config = await Config.findOne();
-      if (!config) {
+      if (config === null) {
         config = new Config();
       }
       config.maintenance = false;
@@ -283,7 +283,7 @@ const initialize = (botToken: string, options: Partial<Telegraf.Options<MainCont
       if (!(await validateObjectId(ctx, orderId))) return;
       const order = await Order.findOne({ _id: orderId });
 
-      if (!order) return;
+      if (order === null) return;
 
       // We look for a dispute for this order
       const dispute = await Dispute.findOne({ order_id: order._id });
@@ -395,7 +395,7 @@ const initialize = (botToken: string, options: Partial<Telegraf.Options<MainCont
       if (!(await validateObjectId(ctx, orderId))) return;
 
       const order = await Order.findOne({ _id: orderId });
-      if (!order) return;
+      if (order === null) return;
 
       // We look for a dispute for this order
       const dispute = await Dispute.findOne({ order_id: order._id });
@@ -452,7 +452,7 @@ const initialize = (botToken: string, options: Partial<Telegraf.Options<MainCont
       if (!(await validateObjectId(ctx, orderId))) return;
       const order = await Order.findOne({ _id: orderId });
 
-      if (!order) return;
+      if (order === null) return;
 
       const buyer = await User.findOne({ _id: order.buyer_id });
       const seller = await User.findOne({ _id: order.seller_id });
@@ -470,7 +470,7 @@ const initialize = (botToken: string, options: Partial<Telegraf.Options<MainCont
       if (!(await validateObjectId(ctx, orderId))) return;
       const order = await Order.findOne({ _id: orderId });
 
-      if (!order) return;
+      if (order === null) return;
       if (!order.hash) return;
 
       const invoice = await getInvoice({ hash: order.hash });
@@ -494,7 +494,7 @@ const initialize = (botToken: string, options: Partial<Telegraf.Options<MainCont
 
       const order = await Order.findOne({ hash });
 
-      if (!order) return;
+      if (order === null) return;
       await subscribeInvoice(bot, hash, true);
       ctx.reply(`hash resubscribed`);
     } catch (error: any) {
@@ -556,7 +556,7 @@ const initialize = (botToken: string, options: Partial<Telegraf.Options<MainCont
       const user = await User.findOne({
         $or: [{ username }, { tg_id: username }],
       });
-      if (!user) {
+      if (user === null) {
         await messages.notFoundUserMessage(ctx);
         return;
       }
@@ -600,7 +600,7 @@ const initialize = (botToken: string, options: Partial<Telegraf.Options<MainCont
       const user = await User.findOne({
         $or: [{ username }, { tg_id: username }],
       });
-      if (!user) {
+      if (user === null) {
         await messages.notFoundUserMessage(ctx);
         return;
       }
