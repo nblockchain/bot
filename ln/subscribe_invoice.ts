@@ -2,12 +2,12 @@ import { Telegraf } from "telegraf";
 import { MainContext } from "../bot/start";
 import {subscribeToInvoice} from 'lightning'
 import { Order, User } from '../models';
-const { payToBuyer } = require('./pay_request');
 import { lnd } from "./connect";
 import * as messages from '../bot/messages';
-const ordersActions = require('../bot/ordersActions');
-const { getUserI18nContext, getEmojiRate, decimalRound } = require('../util');
+import { getUserI18nContext, getEmojiRate, decimalRound } from "../util";
 import logger from "../logger";
+const { payToBuyer } = require('./pay_request');
+const ordersActions = require('../bot/ordersActions');
 
 const subscribeInvoice = async (bot: Telegraf<MainContext>, id: string, resub: boolean) => {
   try {

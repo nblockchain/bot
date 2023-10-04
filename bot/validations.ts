@@ -1,17 +1,18 @@
 import { MainContext, OrderQuery, ctxUpdateAssertMsg } from "./start";
 import { ICommunity } from "../models/community";
-import { FilterQuery } from "mongoose";
+import { FilterQuery , Types } from "mongoose";
 import { UserDocument } from "../models/user";
 import { IOrder } from "../models/order";
 import { Telegraf } from "telegraf";
-
-const { parsePaymentRequest } = require('invoices');
-const { ObjectId } = require('mongoose').Types;
 import * as messages from './messages';
 import { Order, User, Community } from '../models';
-const { isIso4217, isDisputeSolver } = require('../util');
-const { existLightningAddress } = require('../lnurl/lnurl-pay');
-const logger = require('../logger');
+import { isIso4217, isDisputeSolver } from "../util";
+import { existLightningAddress } from '../lnurl/lnurl-pay'
+import logger from "../logger";
+
+const { parsePaymentRequest } = require('invoices');
+
+const { ObjectId } = Types;
 
 // We look in database if the telegram user exists,
 // if not, it creates a new user

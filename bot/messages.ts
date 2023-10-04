@@ -1,5 +1,15 @@
-import { TelegramError } from 'telegraf'
+import { TelegramError , Telegraf } from 'telegraf'
 import QR from 'qrcode';
+import logger from "../logger";
+import { MainContext } from './start';
+import { UserDocument } from '../models/user'
+import { IOrder } from '../models/order'
+
+import { I18nContext } from '@grammyjs/i18n';
+import { IConfig } from '../models/config';
+import { IPendingPayment } from '../models/pending_payment';
+import { PayViaPaymentRequestResult } from 'lightning';
+import { IFiat } from '../util/fiatModel';
 const {
   getCurrency,
   numberFormat,
@@ -12,16 +22,6 @@ const {
   decimalRound,
   getUserAge,
 } = require('../util');
-import logger from "../logger";
-import { MainContext } from './start';
-import { UserDocument } from '../models/user'
-import { IOrder } from '../models/order'
-import { Telegraf } from 'telegraf';
-import { I18nContext } from '@grammyjs/i18n';
-import { IConfig } from '../models/config';
-import { IPendingPayment } from '../models/pending_payment';
-import { PayViaPaymentRequestResult } from 'lightning';
-import { IFiat } from '../util/fiatModel';
 
 const startMessage = async (ctx: MainContext) => {
   try {

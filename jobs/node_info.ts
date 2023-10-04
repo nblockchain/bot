@@ -2,8 +2,8 @@ import { Telegraf } from "telegraf";
 import { MainContext } from "../bot/start";
 
 import { Config } from '../models';
-const { getInfo } = require('../ln');
 import logger from "../logger";
+const { getInfo } = require('../ln');
 
 const info = async (bot: Telegraf<MainContext>) => {
   try {

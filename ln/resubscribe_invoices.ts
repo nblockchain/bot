@@ -1,10 +1,10 @@
 import { Telegraf } from 'telegraf';
 import { MainContext } from "../bot/start";
-import { getInvoices, GetInvoicesResult } from 'lightning';
+import { getInvoices } from 'lightning';
 import { lnd } from './connect';
-const subscribeInvoice = require('./subscribe_invoice');
 import { Order } from '../models';
 import logger from "../logger";
+const subscribeInvoice = require('./subscribe_invoice');
 
 const resubscribeInvoices = async (bot: Telegraf<MainContext>) => {
   try {
