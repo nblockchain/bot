@@ -64,7 +64,7 @@ import { attemptPendingPayments,
   deleteCommunity, 
   nodeInfo
 } from '../jobs';
-import logger from '../logger';
+import { logger } from '../logger';
 import { IUsernameId } from '../models/community';
 
 export interface MainContext extends Context {
