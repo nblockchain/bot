@@ -10,7 +10,7 @@ import { Types } from 'mongoose';
 import * as messages from './messages';
 import { Order, User, Community } from '../models';
 import { isIso4217, isDisputeSolver } from '../util';
-const { existLightningAddress } = require('../lnurl/lnurl-pay');
+import { existLightningAddress } from '../lnurl/lnurl-pay';
 import { logger } from '../logger';
 
 // We look in database if the telegram user exists,
